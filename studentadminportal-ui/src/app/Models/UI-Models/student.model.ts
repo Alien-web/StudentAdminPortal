@@ -6,7 +6,7 @@ export interface Student{
     firstName:string,
     lastName:string,
     email:string,
-    mobile:string,
+    mobile:any,
     dateOfBirth:string,
     profileImageUrl:string,
     genderId:string,

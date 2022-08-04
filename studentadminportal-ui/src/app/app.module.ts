@@ -50,12 +50,14 @@ import { StudentsComponent } from './students/students.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { ViewStudentComponent } from './view-student/view-student.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopNavComponent,
-    StudentsComponent
+    StudentsComponent,
+    ViewStudentComponent
   ],
   imports: [
     HttpClientModule,

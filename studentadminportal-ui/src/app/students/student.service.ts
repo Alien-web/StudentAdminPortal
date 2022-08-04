@@ -13,4 +13,7 @@ export class StudentService {
   getStudents():Observable<Student[]>{
     return this._http.get<Student[]>(this.baseUrl+'students');
   }
+  getStudent(id:string):Observable<Student>{
+    return this._http.get<Student>(this.baseUrl+'students/'+id);
+  }
 }
