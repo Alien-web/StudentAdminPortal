@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Student } from '../Models/API-Models/student.model';
+import { AddStudentRequest } from '../Models/UI-Models/AddStudentRequest';
 import { UpdateStudentRequest } from '../Models/UI-Models/UpdateStudentrequest';
 
 @Injectable({
@@ -32,5 +33,18 @@ export class StudentService {
   }
   deleteStudent(studentId:string):Observable<Student>{
     return this._http.delete<Student>(this.baseUrl+'students/'+studentId);
+  }
+  AddStudent(AddRequest:Student):Observable<Student>{
+    const Addedstudentrequest:AddStudentRequest={
+      firstName:AddRequest.firstName,
+    lastName:AddRequest.lastName,
+    email:AddRequest.email,
+    mobile:AddRequest.mobile,
+    dateOfBirth:AddRequest.dateOfBirth,
+    genderId:AddRequest.genderId,
+    physicalAddress:AddRequest.address.physicalAddress,
+    postalAddress:AddRequest.address.postalAddress
+    }
+    return this._http.post<Student>(this.baseUrl+'students/add',AddRequest);
   }
 }

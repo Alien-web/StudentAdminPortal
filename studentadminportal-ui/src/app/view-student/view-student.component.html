@@ -1,7 +1,8 @@
 <div class="page-header">
     <div class="container row top-row">
         <div class="col-xs-6">
-            <h1>Edit Student</h1>
+            <h1 *ngIf="isExistingStudent">Edit Student</h1>
+            <h1 *ngIf="!isExistingStudent">Add Student</h1>
         </div>
         <div class="col-xs-6 end-xs">
             <a class="btn btn-primary"routerLink="/"> < Go Back</a>
@@ -80,11 +81,14 @@
                     </div>
                 </div> -->
                 <div class="row">
-                    <div class="col-xs-6 end-xs">
+                    <div *ngIf="isExistingStudent" class="col-xs-6 end-xs">
                         <button mat-raised-button color="primary" (click)="onUpdate($event)">Update</button>
                     </div>
-                    <div class="col-xs-6 end-xs">
+                    <div *ngIf="isExistingStudent" class="col-xs-6 end-xs">
                         <button mat-raised-button color="warn" (click)="onDelete($event)">Delete</button>
+                    </div>
+                    <div *ngIf="!isExistingStudent" class="col-xs-12 end-xs">
+                        <button mat-raised-button color="primary" (click)="onAdd($event)">Add</button>
                     </div>
                 </div>
             </form>

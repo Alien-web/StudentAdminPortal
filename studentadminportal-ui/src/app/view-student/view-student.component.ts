@@ -14,6 +14,7 @@ import { StudentService } from '../students/student.service';
 export class ViewStudentComponent implements OnInit {
 
   studentId:string|null|undefined;
+  isExistingStudent:boolean=true;
   student:Student={
     id:'',
     firstName:'',
@@ -43,10 +44,15 @@ export class ViewStudentComponent implements OnInit {
       this.studentId=param.get('id');
     })
     if(this.studentId){
-      this._studentService.getStudent(this.studentId).subscribe(res=>{
-        this.student=res;
-        console.log('student',this.studentId,res);
-      });
+      if(this.studentId.toLowerCase()==='Add'.toLocaleLowerCase()){
+        this.isExistingStudent=false;
+      }
+      else{
+        this._studentService.getStudent(this.studentId).subscribe(res=>{
+          this.student=res;
+          console.log('student',this.studentId,res);
+        });
+      }
     }
     this._genderservice.getGenderList().subscribe(res=>{
       this.genderList=res;
@@ -74,4 +80,14 @@ export class ViewStudentComponent implements OnInit {
     });
   }
 
+  onAdd(event:any){
+    console.log('update',event,this.student);
+    this._studentService.AddStudent(this.student).subscribe(res=>{
+      console.log(res);
+      this._router.navigateByUrl(`student/${res.id}`);
+      this._snackbar.open("Added Succesfully!!",undefined,{
+        duration:1000
+      })
+    });
+  }
 }
