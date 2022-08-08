@@ -30,4 +30,7 @@ export class StudentService {
     }
     return this._http.post<Student>(this.baseUrl+'students/'+studentId,updatedstudentrequest);
   }
+  deleteStudent(studentId:string):Observable<Student>{
+    return this._http.delete<Student>(this.baseUrl+'students/'+studentId);
+  }
 }
